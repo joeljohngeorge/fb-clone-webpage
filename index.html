@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login</title>
+    <link rel="stylesheet" href="fb.css">
+</head>
+<body>
+   
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+            <div class="fblogo">
+                facebook
+            </div>
+            <div class="login">
+                <form action="">
+                    <table class="login-controls">
+                        <tr>
+                            <td><label class="login-label">Email or Mobile</label></td>
+                            <td> <label class="login-label"> Password</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="text"></td>
+                            <td> <input type="password"></td>
+                            <td> <input type="submit" value="Login" class="submit" onclick="redirect()"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><a href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" class="forgotten">Forgotten account?</a></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <div class="main-body">
+            <div class="left-part">
+                <p class="para">Facebook helps you connect and share with the <br> people in your life.</p>
+                <img src="https://blogs.aspect.com/wp-content/uploads/2012/03/FBusers.jpg" alt="Connecting world image"
+                class="fbimage">
+            </div>
+            <div class="right-part">
+                <h1>Create an account</h1>
+                <h3>It's quick and easy</h3>
+                <br>
+               
+                
+                <form action="hello2.html" class="signup-form" id="signup-form">
+                    
+                <input type="name" placeholder="First Name" required name="fname" style="width: 335px;"><br><br>
+                <input type="name" placeholder="Surname" required name="sname" style="width: 335px;"><br><br>
+                <input type="text"  placeholder="Email address" required style="width: 335px;" required name="emailaddress"><br><br>
+                <input type="password" placeholder="New password" required name="password" style="width: 335px;">
+
+                    <br><br>
+                    <label class="gray">Select your birthday</label>
+                    <br><br>
+                    <select id="day" name="day">
+                       <option value="" selected disabled>Select day</option>
+                    </select>
+                    <select id="month" name="month">
+                        <option value="" selected disabled>Select Month</option>
+                        <option value="0">January</option>
+    <option value="1">February</option>
+    <option value="2">March</option>
+    <option value="3">April</option>
+    <option value="4">May</option>
+    <option value="5">June</option>
+    <option value="6">July</option>
+    <option value="7">August</option>
+    <option value="8">September</option>
+    <option value="9">October</option>
+    <option value="10">Novenmer</option>
+    <option value="11">December</option>
+
+                    </select>
+                    <select id="year" name="year">
+                        <option value="" selected disabled>Select Year</option>
+
+                        
+                    </select>
+                    <br><br>
+                    <label class="gray">Gender</label> <br><br>
+                    <input type="radio" name="gender">Male
+                    <input type="radio" name="gender">Female
+                    <input type="radio" name="gender">Others
+                    <br><br>
+                    <input type="submit" value="Sign Up" class="signup-button">
+                    <input type="reset" value="Clear" class="clear-button">
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> <!--Add this link first-->
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js">
+    </script>
+    <script src="script.js"></script>
+
+
+    <script>
+        $(document).ready(function(){
+
+            dpick('#year','#month','#day',1);
+        });
+
+        function dpick(year,month,day,td){
+            if(td==1){
+                var today = new Date();
+                $(year).val(today.getFullYear());
+                $(month).val(today.getMonth());
+            }
+            $(year).change(function(){
+                dpick(year,month,day);
+            });
+            $(month).change(function(){
+                dpick(year,month,day);
+            }); 
+            var month_val = $(month).val();
+            var i=0;
+            $(day).empty();
+            if(month_val=="1"){
+                if($(year).val()%4 == 0){
+                    for(i=1;i<=29;i++){
+                        $(day).append($("<option></option>").attr("value", i).text(i));
+                    }
+                }else{
+                    for(i=1;i<=28;i++){
+                        $(day).append($("<option></option>").attr("value", i).text(i));
+                    }
+                }
+            }
+            else if(month_val=="8" || month_val=="3" || month_val=="5" || month_val=="10"){
+                for(i=1;i<=30;i++){
+                    $(day).append($("<option></option>").attr("value", i).text(i));
+                }
+            }
+            else{
+                for(i=1;i<=31;i++){
+                    $(day).append($("<option></option>").attr("value", i).text(i));
+                }
+            }
+            if(td==1){
+                $(day).val(today.getDate());
+            }
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        for(y = 1940; y <= 2021; y++) {
+                var optn = document.createElement("OPTION");
+                optn.text = y;
+                optn.value = y;
+                
+               
+                if (y == 2000) {
+                    optn.selected = true;
+                }
+                
+                document.getElementById('year').options.add(optn);
+        }
+        </script>  
+
+
+<script>
+    function redirect(){
+        window.location.href="https://fb.com";
+    }
+</script>
+
+<!--<script type="text/javascript">
+    var d = new Date();
+    var monthArray = new Array();
+    monthArray[0] = "January";
+    monthArray[1] = "February";
+    monthArray[2] = "March";
+    monthArray[3] = "April";
+    monthArray[4] = "May";
+    monthArray[5] = "June";
+    monthArray[6] = "July";
+    monthArray[7] = "August";
+    monthArray[8] = "September";
+    monthArray[9] = "October";
+    monthArray[10] = "November";
+    monthArray[11] = "December";
+    for(m = 0; m <= 11; m++) {
+        var optn = document.createElement("OPTION");
+        optn.text = monthArray[m];
+        // server side month start from one
+        optn.value = (m+1);
+    
+        // if june selected
+        if ( m == 0) {
+            optn.selected = true;
+        }
+    
+        document.getElementById('month').options.add(optn);
+    }
+    </script>
+
+<script>
+    (function () {
+        let day_selected = 01 // current day
+        let option = '';
+        option = '<option>Day</option>'; // first option
+      
+        for (let i = 1; i < 32; i++) {
+            // value day number with 0. 01 02 03 04..
+            let day = (i <= 9) ? '0' + i : i;
+          
+            // or value day number 1 2 3 4..
+            // let day = i;
+          
+            let selected = (i === day_selected ? ' selected' : '');
+            option += '<option value="' + day + '"' + selected + '>' + day + '</option>';
+        }
+        document.getElementById("day").innerHTML = option;
+    })();
+    </script>-->
+</body>
+</html>
